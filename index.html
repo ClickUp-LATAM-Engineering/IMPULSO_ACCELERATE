@@ -410,43 +410,52 @@
     </footer>
 
     <script>
-       async function submitForm(event) {
+async function submitForm(event) {
     event.preventDefault();
     
+    // 1. Setup UI State
     const btn = event.target.querySelector('button[type="submit"]');
     const originalText = btn.innerText;
     btn.innerText = 'A enviar...';
     btn.disabled = true;
 
-    // Format data as URL parameters (Simple Request)
+    // 2. Prepare Form Data (Matches e.parameter in your Apps Script)
     const formData = new URLSearchParams();
     formData.append('name', document.getElementById('inputName').value);
     formData.append('organization', document.getElementById('inputOrg').value);
     formData.append('role', document.getElementById('inputRole').value);
     formData.append('email', document.getElementById('inputEmail').value);
 
-    const scriptURL = 'YOUR_SCRIPT_URL_HERE';
+    // 3. Your New Deployment URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzK4Hthd8Sqlcl0o-2BjNtfatdxNrt2lK-DekD9xo3z7fe0xI1s8tbzP-sD0nC0d3wbqg/exec'; 
 
     try {
+        // 4. Execute the Post
+        // Note: 'no-cors' is required to prevent the browser from blocking the Google redirect
         await fetch(scriptURL, {
             method: 'POST',
-            mode: 'no-cors', // This tells the browser: "Don't worry about the response"
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            mode: 'no-cors', 
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             body: formData.toString()
         });
 
-        // Because we use 'no-cors', we can't read the result, 
-        // so if the code reaches this line without a network error, it's a success!
+        // 5. Success UI Transition
+        // Since we use 'no-cors', the browser won't let us read the response, 
+        // but if the network request finishes, the data is in your sheet.
         document.getElementById('rsvp-container').style.display = 'none';
         document.getElementById('success-state').style.display = 'flex';
         
     } catch (error) {
         console.error('Submission Error:', error);
-        alert('Houve um erro ao enviar o formulário. Tente novamente.');
+        alert('Houve um erro ao enviar. Verifique sua conexão e tente novamente.');
+        
+        // Reset button if there's a real network crash
         btn.innerText = originalText;
         btn.disabled = false;
     }
 }
-    </script>
+</script>
 </body>
 </html>
