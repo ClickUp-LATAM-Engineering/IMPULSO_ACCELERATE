@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickUp ACCELERATE | São Paulo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* ClickUp Brand Palette - Solar Light */
+            --bg-page: #ffffff;
+            --bg-card: #f9f9fb;
+            --brand-purple: #7b68ee;
+            --brand-gradient: linear-gradient(135deg, #7b68ee 0%, #ff00df 100%);
+            --subbrand-gradient: linear-gradient(135deg, #ff02f0 0%, #f76808 100%);
+            --brand-teal: #00ffbd;
+            --text-slate: #161b3d;
+            --text-muted: #7f8191;
+            --border-light: #e0e0e0;
+            
+            /* Shapes & Shadows */
+            --radius-main: 12px;
+            --shadow-exec: 0 10px 30px rgba(22, 27, 61, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-slate);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden; /* Strict no-scroll */
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-slate);
+        }
+
+        /* --- PLACEHOLDER UTILITY --- */
+        .placeholder {
+            border: 2px dashed #c1c5d6;
+            background: #f8f9fa;
+            color: #8f95b2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: var(--radius-main);
+        }
+
+        /* --- HEADER --- */
+        header {
+            height: 100px; /* Increased for Executive whitespace */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 64px; /* Increased padding */
+            flex-shrink: 0;
+            border-bottom: 1px solid var(--border-light);
+            background: var(--bg-page);
+        }
+
+        .header-logo-placeholder {
+            width: 160px;
+            height: 40px;
+            border-radius: 6px;
+        }
+
+        /* --- MAIN STAGE --- */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px; /* Increased whitespace */
+            background: var(--bg-page); /* Solid White Background */
+        }
+
+        .invite-card {
+            background: var(--bg-page);
+            width: 100%;
+            max-width: 1200px; /* Expanded for more breathing room */
+            height: 600px;
+            border-radius: var(--radius-main);
+            box-shadow: var(--shadow-exec);
+            border: 1px solid var(--border-light);
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Card Left: The Status & Masterclass */
+        .card-left {
+            flex: 1.2;
+            padding: 64px; /* Executive White Space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid var(--border-light);
+            background: var(--bg-page);
+        }
+
+        .badge {
+            background: var(--brand-teal);
+            color: var(--text-slate);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 8px 24px;
+            border-radius: 50px;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .card-left h1 {
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            /* High-Frequency gradient only for the sub-brand */
+            background: var(--subbrand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-left h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .feature-block {
+            background: var(--bg-card); /* Subtle light gray */
+            border: 1px solid var(--border-light);
+            padding: 48px;
+            border-radius: var(--radius-main);
+        }
+
+        .feature-block h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-block h3::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--brand-teal);
+            border-radius: 50%;
+        }
+
+        .feature-block p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-slate);
+            margin-bottom: 20px;
+        }
+
+        .expert-profile {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 16px;
+        }
+
+        .headshot-placeholder {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border-width: 1px;
+            flex-shrink: 0;
+            font-size: 0.7rem;
+            background: var(--bg-page);
+        }
+
+        .expert-profile p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        .expert-profile p strong {
+            color: var(--text-slate);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Card Right: The RSVP Gate */
+        .card-right {
+            flex: 0.8;
+            padding: 64px; /* Executive White Space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--bg-card); /* Subtle light gray */
+        }
+
+        .event-meta-right {
+            margin-bottom: 32px;
+            text-align: left;
+            border-left: 3px solid var(--brand-purple);
+            padding-left: 16px;
+        }
+
+        .event-meta-right .date {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-slate);
+            margin-bottom: 6px;
+        }
+
+        .event-meta-right .venue {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .intake-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-slate);
+            background: var(--bg-page);
+            transition: all 0.2s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--brand-purple);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn-primary {
+            background: var(--brand-gradient);
+            color: white;
+            border: none;
+            border-radius: var(--radius-main);
+            padding: 18px 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: filter 0.2s ease, transform 0.1s ease;
+            box-shadow: var(--shadow-exec);
+        }
+
+        /* Hover States: Brightness shift only */
+        .btn-primary:hover {
+            filter: brightness(1.15);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* --- SUCCESS STATE --- */
+        .success-state {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .success-state h3 {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ff02f0 0%, #00ffbd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(255, 2, 240, 0.5)) drop-shadow(0 0 20px rgba(0, 255, 189, 0.3));
+        }
+
+        .success-state p {
+            font-size: 1.1rem;
+            color: var(--text-slate);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .success-state .neon-highlight {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 20px;
+            background: rgba(255, 2, 240, 0.05);
+            border: 1px solid #ff02f0;
+            border-radius: 8px;
+            color: #ff02f0;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            box-shadow: 0 0 20px rgba(255, 2, 240, 0.2), inset 0 0 10px rgba(255, 2, 240, 0.1);
+            text-shadow: 0 0 8px rgba(255, 2, 240, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            height: 100px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-page);
+        }
+
+        .footer-logo-placeholder {
+            width: 200px;
+            height: 36px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="placeholder header-logo-placeholder">[ClickUp Logo]</div>
+    </header>
+
+    <main>
+        <div class="invite-card">
+            
+            <!-- SECTION 1 & 2: The Status & Masterclass -->
+            <div class="card-left">
+                <span class="badge">EXCLUSIVO PARA CONVIDADOS</span>
+                <h1>ClickUp ACCELERATE | São Paulo</h1>
+                <h2>Uma Masterclass Executiva: Construindo o caminho para a Inovação em IA.</h2>
+
+                <div class="feature-block">
+                    <h3>Arquitetura de Soluções ao Vivo</h3>
+                    <p>Junte-se ao nosso Centro Global de Excelência para uma sessão prática de soluções. Arquitetaremos fluxos de trabalho Enterprise de alta complexidade ao vivo, fornecendo insights validados por pares para líderes regionais.</p>
+                    
+                    <div class="expert-profile">
+                        <div class="placeholder headshot-placeholder">1771353399744.jpeg</div>
+                        <p><strong>Devin Stoker, Diretor do Global Solutions COE.</strong><br>Trazendo perspectiva global para o escalonamento técnico regional.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: The RSVP Gate -->
+            <div class="card-right">
+                <div id="rsvp-container">
+                    <div class="event-meta-right">
+                        <p class="date">23 e 24 de março de 2026</p>
+                        <p class="venue">Você receberá os detalhes de local e horário no e-mail de confirmação.</p>
+                    </div>
+                    
+                    <form class="intake-form" onsubmit="submitForm(event)">
+                        <div class="input-group">
+                            <input type="text" id="inputName" required placeholder="Nome Completo">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="inputOrg" required placeholder="Organização">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="inputRole" required placeholder="Cargo">
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="inputEmail" required placeholder="E-mail corporativo">
+                        </div>
+                        <button type="submit" class="btn-primary">RSVP</button>
+                    </form>
+                </div>
+
+                <!-- Success Message -->
+                <div id="success-state" class="success-state">
+                    <h3>Obrigado pelo seu interesse.</h3>
+                    <p>Fique atento a um e-mail nosso.</p>
+                    <span class="neon-highlight">Receberá um e-mail em ou antes de 13 de março.</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="placeholder footer-logo-placeholder">ClickUpAccelerate.svg</div>
+        <div class="placeholder footer-logo-placeholder">[Academia ClickUp Logo]</div>
+    </footer>
+
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();
+            
+            // Obter o botão de submissão para mostrar um estado de carregamento
+            const btn = event.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'A enviar...';
+            btn.disabled = true;
+
+            // Recolher os dados do formulário
+            const payload = {
+                name: document.getElementById('inputName').value,
+                organization: document.getElementById('inputOrg').value,
+                role: document.getElementById('inputRole').value,
+                email: document.getElementById('inputEmail').value
+            };
+
+            // O URL do Web App do seu Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzQZfR3H5i6I5sXEW0vFTNGgkMXv7Z7SjfyNIiAhxFED8LuoB1i3dyjaf-aBAus0ahP_w/exec';
+
+            try {
+                // Enviar os dados para o Google Sheets via POST request
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    // Usar text/plain evita erros estritos de CORS preflight no Google Apps Script
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    }
+                });
+
+                // Esconder o contentor do formulário e mostrar o estado de sucesso
+                document.getElementById('rsvp-container').style.display = 'none';
+                document.getElementById('success-state').style.display = 'flex';
+                
+            } catch (error) {
+                console.error('Erro!', error.message);
+                alert('Houve um erro ao enviar o formulário. Tente novamente.');
+                
+                // Repor o botão se houver um erro
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
