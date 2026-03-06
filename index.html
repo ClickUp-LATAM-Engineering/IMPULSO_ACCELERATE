@@ -1,5 +1,5 @@
-<<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -406,7 +406,7 @@
 
     <footer>
         <img src="ClickUpAccelerate.png" alt="ClickUp ACCELERATE Logo" class="footer-logo">
-        <img src="ACU Black.png" alt="Academia ClickUp Logo" class="footer-logo">
+        <img src="acu-black.png" alt="Academia ClickUp Logo" class="footer-logo">
     </footer>
 
     <script>
@@ -431,23 +431,19 @@
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzQZfR3H5i6I5sXEW0vFTNGgkMXv7Z7SjfyNIiAhxFED8LuoB1i3dyjaf-aBAus0ahP_w/exec';
 
             try {
-                // Enviar os dados para o Google Sheets via POST request
-                await fetch(scriptURL, {
+                // MODIFICACIÓN CLAVE AQUÍ: Enviar los datos puros sin modificar cabeceras ni usar 'no-cors'
+                const response = await fetch(scriptURL, {
                     method: 'POST',
-                    body: JSON.stringify(payload),
-                    // Usar text/plain evita erros estritos de CORS preflight no Google Apps Script
-                    headers: {
-                        'Content-Type': 'text/plain;charset=utf-8',
-                    }
+                    body: JSON.stringify(payload)
                 });
 
-                // Esconder o contentor do formulário e mostrar o estado de sucesso
+                // Asumimos el éxito y mostramos la pantalla de completado
                 document.getElementById('rsvp-container').style.display = 'none';
                 document.getElementById('success-state').style.display = 'flex';
                 
             } catch (error) {
-                console.error('Erro!', error.message);
-                alert('Houve um erro ao enviar o formulário. Tente novamente.');
+                console.error('Erro!', error);
+                alert('Houve um erro ao enviar o formulário. Verifique sua conexão y tente novamente.');
                 
                 // Repor o botão se houver um erro
                 btn.innerText = originalText;
