@@ -406,50 +406,47 @@
 
     <footer>
         <img src="ClickUpAccelerate.png" alt="ClickUp ACCELERATE Logo" class="footer-logo">
-        <img src="acu-black.png" alt="Academia ClickUp Logo" class="footer-logo">
+        <img src="ACU Black.png" alt="Academia ClickUp Logo" class="footer-logo">
     </footer>
 
     <script>
-        async function submitForm(event) {
-            event.preventDefault();
-            
-            // Obter o botão de submissão para mostrar um estado de carregamento
-            const btn = event.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-            btn.innerText = 'A enviar...';
-            btn.disabled = true;
+       async function submitForm(event) {
+    event.preventDefault();
+    
+    const btn = event.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+    btn.innerText = 'A enviar...';
+    btn.disabled = true;
 
-            // Recolher os dados do formulário
-            const payload = {
-                name: document.getElementById('inputName').value,
-                organization: document.getElementById('inputOrg').value,
-                role: document.getElementById('inputRole').value,
-                email: document.getElementById('inputEmail').value
-            };
+    // Format data as URL parameters (Simple Request)
+    const formData = new URLSearchParams();
+    formData.append('name', document.getElementById('inputName').value);
+    formData.append('organization', document.getElementById('inputOrg').value);
+    formData.append('role', document.getElementById('inputRole').value);
+    formData.append('email', document.getElementById('inputEmail').value);
 
-            // O URL do Web App do seu Google Apps Script
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzQZfR3H5i6I5sXEW0vFTNGgkMXv7Z7SjfyNIiAhxFED8LuoB1i3dyjaf-aBAus0ahP_w/exec';
+    const scriptURL = 'YOUR_SCRIPT_URL_HERE';
 
-            try {
-                // MODIFICACIÓN CLAVE AQUÍ: Enviar los datos puros sin modificar cabeceras ni usar 'no-cors'
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    body: JSON.stringify(payload)
-                });
+    try {
+        await fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // This tells the browser: "Don't worry about the response"
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: formData.toString()
+        });
 
-                // Asumimos el éxito y mostramos la pantalla de completado
-                document.getElementById('rsvp-container').style.display = 'none';
-                document.getElementById('success-state').style.display = 'flex';
-                
-            } catch (error) {
-                console.error('Erro!', error);
-                alert('Houve um erro ao enviar o formulário. Verifique sua conexão y tente novamente.');
-                
-                // Repor o botão se houver um erro
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }
-        }
+        // Because we use 'no-cors', we can't read the result, 
+        // so if the code reaches this line without a network error, it's a success!
+        document.getElementById('rsvp-container').style.display = 'none';
+        document.getElementById('success-state').style.display = 'flex';
+        
+    } catch (error) {
+        console.error('Submission Error:', error);
+        alert('Houve um erro ao enviar o formulário. Tente novamente.');
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
+}
     </script>
 </body>
 </html>
