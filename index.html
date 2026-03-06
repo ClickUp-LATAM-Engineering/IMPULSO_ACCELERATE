@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,18 +46,17 @@
             color: var(--text-slate);
         }
 
-        /* --- PLACEHOLDER UTILITY --- */
-        .placeholder {
-            border: 2px dashed #c1c5d6;
-            background: #f8f9fa;
-            color: #8f95b2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-align: center;
-            border-radius: var(--radius-main);
+        /* --- IMAGES & LOGOS --- */
+        .header-logo {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-logo {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
         }
 
         /* --- HEADER --- */
@@ -181,14 +180,13 @@
             padding-top: 16px;
         }
 
-        .headshot-placeholder {
+        .expert-headshot {
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            border-width: 1px;
+            object-fit: cover;
             flex-shrink: 0;
-            font-size: 0.7rem;
-            background: var(--bg-page);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .expert-profile p {
@@ -342,17 +340,12 @@
             border-top: 1px solid var(--border-light);
             background: var(--bg-page);
         }
-
-        .footer-logo-placeholder {
-            width: 200px;
-            height: 36px;
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="placeholder header-logo-placeholder">clickup-logo.png</div>
+        <img src="clickup-logo.png" alt="ClickUp Logo" class="header-logo">
     </header>
 
     <main>
@@ -369,7 +362,7 @@
                     <p>Junte-se ao nosso Centro Global de Excelência para uma sessão prática de soluções. Arquitetaremos fluxos de trabalho Enterprise de alta complexidade ao vivo, fornecendo insights validados por pares para líderes regionais.</p>
                     
                     <div class="expert-profile">
-                        <div class="placeholder headshot-placeholder">1771353399744.jpeg</div>
+                        <img src="1771353399744.jpeg" alt="Devin Stoker" class="expert-headshot">
                         <p><strong>Devin Stoker, Diretor do Global Solutions COE.</strong><br>Trazendo perspectiva global para o escalonamento técnico regional.</p>
                     </div>
                 </div>
@@ -412,8 +405,8 @@
     </main>
 
     <footer>
-        <div class="placeholder footer-logo-placeholder">ClickUpAccelerate.png</div>
-        <div class="placeholder footer-logo-placeholder">ACU Black.png</div>
+        <img src="ClickUpAccelerate.png" alt="ClickUp ACCELERATE Logo" class="footer-logo">
+        <img src="ACU Black.png" alt="Academia ClickUp Logo" class="footer-logo">
     </footer>
 
     <script>
